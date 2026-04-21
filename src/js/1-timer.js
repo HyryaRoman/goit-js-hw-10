@@ -171,7 +171,6 @@ class Notifier {
     iziToast.error({
       class: 'toast toast--error',
       message,
-      iconUrl: './img/icon-error.svg',
       ...this.#defaultConfig,
     });
   }
@@ -180,7 +179,6 @@ class Notifier {
     iziToast.success({
       class: 'toast toast--ok',
       message,
-      iconUrl: './img/icon-ok.svg',
       ...this.#defaultConfig,
     });
   }

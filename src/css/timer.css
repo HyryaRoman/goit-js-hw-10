@@ -8,9 +8,19 @@
     color: var(--toast-ok-text-color);
   }
 
+  & .ico-ok.ico-ok.ico-ok {
+    background: url('../img/icon-ok.svg') no-repeat 50% 50%;
+    background-size: 24px 24px;
+  }
+
   &.toast--error {
     background-color: var(--toast-error-bg-color);
     color: var(--toast-error-text-color);
+  }
+
+  & .ico-error.ico-error.ico-error {
+    background: url('../img/icon-error.svg') no-repeat 50% 50%;
+    background-size: 24px 24px;
   }
 
   &::after {
@@ -19,7 +29,7 @@
 
   .iziToast-close {
     background: url('../img/icon-close.svg') no-repeat 50% 50%;
-    background-size: 16px;
+    background-size: 16px 16px;
     opacity: 1;
   }
 }
