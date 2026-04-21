@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap');
+
 :root {
-  --text-color: #242424;
+  --text-color: #2e2f42;
   --background-color: #ffffff;
 
   --primary-bg-color: #4e75ff;
@@ -15,10 +17,23 @@
   --toast-error-bg-color: #ef4040;
   --toast-error-text-color: #ffffff;
 
+  --input-normal-border: #808080;
+  --input-normal-bg: #ffffff;
+
+  --input-hover-border: #000000;
+  --input-hover-bg: #ffffff;
+
+  --input-active-border: var(--primary-bg-color);
+  --input-active-bg: #ffffff;
+
+  --input-disabled-border: #808080;
+  --input-disabled-bg: #fafafa;
+
   --transition: 150ms ease-out;
 
   /* font-family: Inter, Avenir, Helvetica, Arial, sans-serif; */
   font-family:
+    'Montserrat',
     system-ui,
     -apple-system,
     BlinkMacSystemFont,
@@ -75,11 +90,14 @@ button {
   letter-spacing: 0.04em;
   color: var(--primary-text-color);
 
-  transition: background-color var(--transition);
+  transition:
+    background-color var(--transition),
+    color var(--transition);
 
   &:hover,
   &:focus {
     background-color: var(--primary-hover-color);
+    color: var(--primary-text-color);
   }
 
   &:disabled {
@@ -95,6 +113,44 @@ a {
 a:focus,
 a:hover {
   color: var(--primary-hover-color);
+}
+
+input[type='text'] {
+  display: block;
+  padding: 8px 16px;
+
+  font-family: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  color: currentColor;
+
+  border: 1px solid var(--input-normal-border);
+  border-radius: 4px;
+
+  background-color: var(--input-normal-bg);
+
+  transition:
+    border-color var(--transition),
+    background-color var(--transition);
+
+  &:hover {
+    border-color: var(--input-hover-border);
+    background-color: var(--input-hover-bg);
+  }
+
+  &:active,
+  &:focus {
+    border-color: var(--input-active-border);
+    background-color: var(--input-active-bg);
+    outline: 2px solid var(--input-active-border);
+  }
+
+  &:disabled {
+    border-color: var(--input-disabled-border);
+    background-color: var(--input-disabled-bg);
+  }
 }
 
 .visually-hidden {

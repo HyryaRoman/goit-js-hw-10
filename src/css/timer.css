@@ -23,3 +23,62 @@
     opacity: 1;
   }
 }
+
+.flatpickr-calendar {
+  background-color: #f5f5f5;
+}
+
+.flatpickr-day {
+  transition:
+    border-color var(--transition),
+    background-color var(--transition);
+
+  &:hover {
+    background-color: #c1c1c1;
+    border-color: #c1c1c1;
+  }
+
+  &.today {
+    border-color: var(--primary-bg-color);
+
+    &:hover {
+      background-color: transparent;
+      border-color: var(--primary-hover-color);
+      color: currentColor;
+    }
+  }
+
+  &.selected {
+    background-color: var(--primary-bg-color);
+    border-color: var(--primary-bg-color);
+
+    &:hover {
+      background-color: var(--primary-hover-color);
+      border-color: var(--primary-hover-color);
+    }
+  }
+}
+
+.timer-input {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 8px;
+  margin-bottom: 32px;
+}
+
+.timer {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 24px;
+
+  & .field {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+  }
+
+  & .value {
+    font-size: 40px;
+    line-height: 1.2;
+  }
+}
