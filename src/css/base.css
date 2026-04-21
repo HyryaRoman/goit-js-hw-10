@@ -9,6 +9,12 @@
   --disabled-bg-color: #cfcfcf;
   --disabled-text-color: #989898;
 
+  --toast-ok-bg-color: #59a10d;
+  --toast-ok-text-color: #ffffff;
+
+  --toast-error-bg-color: #ef4040;
+  --toast-error-text-color: #ffffff;
+
   --transition: 150ms ease-out;
 
   /* font-family: Inter, Avenir, Helvetica, Arial, sans-serif; */

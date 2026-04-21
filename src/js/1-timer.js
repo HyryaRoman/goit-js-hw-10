@@ -3,6 +3,7 @@ import 'flatpickr/dist/flatpickr.min.css';
 
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
+import '../css/timer.css';
 
 function addLeadingZero(value) {
   return String(value).padStart(2, '0');
@@ -157,20 +158,29 @@ class Notifier {
 
   constructor(defaultConfig = {}) {
     this.#defaultConfig = defaultConfig;
+    iziToast.settings({
+      timeout: 2500,
+      resetOnHover: true,
+      animateInside: false,
+      transitionIn: 'bounceInLeft',
+      transitionOut: 'fadeOutRight',
+    });
   }
 
   error(message) {
     iziToast.error({
-      class: 'toast--error',
+      class: 'toast toast--error',
       message,
+      iconUrl: '../img/icon-error.svg',
       ...this.#defaultConfig,
     });
   }
 
   ok(message) {
     iziToast.success({
-      class: 'toast--ok',
+      class: 'toast toast--ok',
       message,
+      iconUrl: '../img/icon-ok.svg',
       ...this.#defaultConfig,
     });
   }

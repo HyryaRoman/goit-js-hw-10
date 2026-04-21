@@ -1,0 +1,25 @@
+.toast {
+  & * {
+    color: inherit !important;
+  }
+
+  &.toast--ok {
+    background-color: var(--toast-ok-bg-color);
+    color: var(--toast-ok-text-color);
+  }
+
+  &.toast--error {
+    background-color: var(--toast-error-bg-color);
+    color: var(--toast-error-text-color);
+  }
+
+  &::after {
+    box-shadow: none;
+  }
+
+  .iziToast-close {
+    background: url('../img/icon-close.svg') no-repeat 50% 50%;
+    background-size: 16px;
+    opacity: 1;
+  }
+}
