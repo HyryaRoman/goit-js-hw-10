@@ -7,6 +7,11 @@
 <title>Main - JS-10</title>
 <link rel="icon" type="image/svg+xml" href="/goit-js-hw-10/favicon.svg" />
 
+    <script type="module" crossorigin src="/goit-js-hw-10/1-timer.js"></script>
+    <link rel="modulepreload" crossorigin href="/goit-js-hw-10/assets/modulepreload-polyfill-B5Qt9EMX.js">
+    <link rel="modulepreload" crossorigin href="/goit-js-hw-10/assets/vendor-BbSUbo7J.js">
+    <link rel="stylesheet" crossorigin href="/goit-js-hw-10/assets/vendor-C1gPI-5C.css">
+    <link rel="stylesheet" crossorigin href="/goit-js-hw-10/assets/1-timer-GyHDyE9F.css">
     <link rel="stylesheet" crossorigin href="/goit-js-hw-10/assets/styles-Cs5D8p8q.css">
   </head>
   <body>
@@ -20,7 +25,7 @@
       </a>
       <ul class="nav-list">
         <li class="nav-item">
-          <a class="nav-link  " href="./1-timer.html"
+          <a class="nav-link active" href="./1-timer.html"
             >Timer</a
           >
         </li>
@@ -38,7 +43,33 @@
 
 
     <main>
-      <h1 class="visually-hidden">Main page</h1>
+      <div class="container">
+        <h1 class="visually-hidden">Timer</h1>
+
+        <div class="timer-input">
+          <input type="text" id="datetime-picker" />
+          <button type="button" data-start>Start</button>
+        </div>
+
+        <div class="timer">
+          <div class="field">
+            <span class="value" data-days>00</span>
+            <span class="label">Days</span>
+          </div>
+          <div class="field">
+            <span class="value" data-hours>00</span>
+            <span class="label">Hours</span>
+          </div>
+          <div class="field">
+            <span class="value" data-minutes>00</span>
+            <span class="label">Minutes</span>
+          </div>
+          <div class="field">
+            <span class="value" data-seconds>00</span>
+            <span class="label">Seconds</span>
+          </div>
+        </div>
+      </div>
     </main>
 
     <footer class="footer">
