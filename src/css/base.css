@@ -6,6 +6,9 @@
   --primary-hover-color: #6c8cff;
   --primary-text-color: #ffffff;
 
+  --disabled-bg-color: #cfcfcf;
+  --disabled-text-color: #989898;
+
   --transition: 150ms ease-out;
 
   /* font-family: Inter, Avenir, Helvetica, Arial, sans-serif; */
@@ -71,6 +74,11 @@ button {
   &:hover,
   &:focus {
     background-color: var(--primary-hover-color);
+  }
+
+  &:disabled {
+    background-color: var(--disabled-bg-color);
+    color: var(--disabled-text-color);
   }
 }
 
