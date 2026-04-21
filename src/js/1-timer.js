@@ -1,6 +1,8 @@
 import flatpickr from 'flatpickr';
-
 import 'flatpickr/dist/flatpickr.min.css';
+
+import iziToast from 'izitoast';
+import 'izitoast/dist/css/iziToast.min.css';
 
 function addLeadingZero(value) {
   return String(value).padStart(2, '0');
@@ -36,12 +38,14 @@ function convertUnits(raw) {
 
 class CountdownClock {
   #onUpdateCallback = null;
+  #onFinishedCallback = null;
 
   #targetTime = null;
   #intervalID = null;
 
-  constructor(onUpdateCallback) {
+  constructor(onUpdateCallback = null, onFinishedCallback = null) {
     this.#onUpdateCallback = onUpdateCallback;
+    this.#onFinishedCallback = onFinishedCallback;
   }
 
   canCountdownTo(time) {
@@ -63,9 +67,10 @@ class CountdownClock {
 
   #update() {
     const timeRemainingMS = Math.max(this.#targetTime - Date.now(), 0);
-    this.#onUpdateCallback(timeRemainingMS);
+    if (this.#onUpdateCallback) this.#onUpdateCallback(timeRemainingMS);
     if (timeRemainingMS <= 0) {
       this.stopCountdown();
+      if (this.#onFinishedCallback) this.#onFinishedCallback();
     }
   }
 }
@@ -97,15 +102,17 @@ class CountdownDisplay {
 
 class CountdownInput {
   #clock;
+  #notifier;
   #startButton;
   #inputField;
   #targetDate;
 
-  constructor(inputSelector, clock) {
+  constructor(inputSelector, clock, notifier) {
     const inputContainer = document.querySelector(inputSelector);
     this.#inputField = inputContainer.querySelector('input[type="text"]');
     this.#startButton = inputContainer.querySelector('[data-start]');
     this.#clock = clock;
+    this.#notifier = notifier;
 
     const onClose = selectedDates => this.#onDatePicked(selectedDates[0]);
 
@@ -128,7 +135,7 @@ class CountdownInput {
   #onDatePicked(date) {
     if (!this.#clock.canCountdownTo(date)) {
       this.#startButton.disabled = true;
-      window.alert('Please choose a date in the future');
+      this.#notifier.error('Please choose a date in the future');
       return;
     }
     this.#startButton.disabled = false;
@@ -138,13 +145,44 @@ class CountdownInput {
   #onStartButtonClicked(e) {
     if (!this.#clock.canCountdownTo(this.#targetDate)) {
       this.#startButton.disabled = true;
-      window.alert('Please choose a date in the future');
+      this.#notifier.error('Please choose a date in the future');
       return;
     }
     this.#clock.startCountdown(this.#targetDate);
   }
 }
 
+class Notifier {
+  #defaultConfig;
+
+  constructor(defaultConfig = {}) {
+    this.#defaultConfig = defaultConfig;
+  }
+
+  error(message) {
+    iziToast.error({
+      class: 'toast--error',
+      message,
+      ...this.#defaultConfig,
+    });
+  }
+
+  ok(message) {
+    iziToast.success({
+      class: 'toast--ok',
+      message,
+      ...this.#defaultConfig,
+    });
+  }
+}
+
+const notifier = new Notifier({
+  position: 'topRight',
+});
+
 const display = new CountdownDisplay('.timer');
-const clock = new CountdownClock(time => display.setTime(time));
-const input = new CountdownInput('.timer-input', clock);
+const clock = new CountdownClock(
+  time => display.setTime(time),
+  () => notifier.ok('Countdown Finished')
+);
+const input = new CountdownInput('.timer-input', clock, notifier);
