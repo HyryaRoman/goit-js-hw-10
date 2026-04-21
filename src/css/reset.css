@@ -1,29 +1,25 @@
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p {
+*,
+*::after,
+*::before {
   margin: 0;
-}
-
-p:last-child {
-  margin-bottom: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 ul {
-  margin: 0;
-  padding: 0;
   list-style: none;
 }
 
 a {
+  font-family: inherit;
+  font-size: inherit;
   color: currentColor;
   text-decoration: none;
 }
 
 button {
+  font-family: inherit;
+  font-size: inherit;
   cursor: pointer;
 }
 

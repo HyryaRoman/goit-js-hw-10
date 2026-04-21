@@ -38,7 +38,11 @@ export default defineConfig(({ command }) => {
       emptyOutDir: true,
     },
     plugins: [
-      injectHTML(),
+      injectHTML({
+        replace: {
+          undefined: ' ',
+        },
+      }),
       FullReload(['./src/**/**.html']),
       SortCss({
         sort: 'mobile-first',
