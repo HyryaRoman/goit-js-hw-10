@@ -55,6 +55,7 @@ class CountdownClock {
 
   startCountdown(until) {
     if (!this.canCountdownTo(until)) return;
+    if (this.#intervalID !== null) this.stopCountdown();
     this.#targetTime = until;
     this.#intervalID = window.setInterval(() => this.#update(), 1000);
     this.#update();
@@ -69,9 +70,7 @@ class CountdownClock {
   #update() {
     const timeRemainingMS = Math.max(this.#targetTime - Date.now(), 0);
     if (this.#onUpdateCallback) this.#onUpdateCallback(timeRemainingMS);
-    console.log(timeRemainingMS);
     if (timeRemainingMS <= 0) {
-      console.log('Stopping...');
       this.stopCountdown();
       if (this.#onFinishedCallback) this.#onFinishedCallback();
     }
