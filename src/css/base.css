@@ -115,8 +115,7 @@ a:hover {
   color: var(--primary-hover-color);
 }
 
-input[type='text'],
-input[type='number'] {
+.input--plain {
   display: block;
   width: 100%;
   padding: 8px 16px;
@@ -159,18 +158,19 @@ input[type='number'] {
 Source - https://stackoverflow.com/a/4298216
 Posted by antonj, modified by community. See post 'Timeline' for change history
 Retrieved 2026-04-22, License - CC BY-SA 4.0
+Modified by Hyria Roman
 */
 
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  /* display: none; <- Crashes Chrome on hover */
-  -webkit-appearance: none;
-  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
-}
-
-input[type='number'] {
+.input--plain[type='number'] {
   -moz-appearance: textfield; /* Firefox */
   appearance: textfield;
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+  }
 }
 
 .visually-hidden {
