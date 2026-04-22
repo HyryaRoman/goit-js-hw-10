@@ -154,16 +154,14 @@ class CountdownInput {
 }
 
 class Notifier {
-  #defaultConfig;
-
-  constructor(defaultConfig = {}) {
-    this.#defaultConfig = defaultConfig;
+  constructor() {
     iziToast.settings({
       timeout: 5000,
       resetOnHover: true,
       animateInside: false,
       transitionIn: 'bounceInLeft',
       transitionOut: 'fadeOutRight',
+      position: 'topRight',
     });
   }
 
@@ -171,7 +169,6 @@ class Notifier {
     iziToast.error({
       class: 'toast toast--error',
       message,
-      ...this.#defaultConfig,
     });
   }
 
@@ -179,14 +176,11 @@ class Notifier {
     iziToast.success({
       class: 'toast toast--ok',
       message,
-      ...this.#defaultConfig,
     });
   }
 }
 
-const notifier = new Notifier({
-  position: 'topRight',
-});
+const notifier = new Notifier();
 
 const display = new CountdownDisplay('.timer');
 const clock = new CountdownClock(
