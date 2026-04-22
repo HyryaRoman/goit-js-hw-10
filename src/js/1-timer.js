@@ -159,7 +159,7 @@ class Notifier {
   constructor(defaultConfig = {}) {
     this.#defaultConfig = defaultConfig;
     iziToast.settings({
-      timeout: 2500,
+      timeout: 5000,
       resetOnHover: true,
       animateInside: false,
       transitionIn: 'bounceInLeft',
