@@ -69,7 +69,9 @@ class CountdownClock {
   #update() {
     const timeRemainingMS = Math.max(this.#targetTime - Date.now(), 0);
     if (this.#onUpdateCallback) this.#onUpdateCallback(timeRemainingMS);
+    console.log(timeRemainingMS);
     if (timeRemainingMS <= 0) {
+      console.log('Stopping...');
       this.stopCountdown();
       if (this.#onFinishedCallback) this.#onFinishedCallback();
     }
