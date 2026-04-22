@@ -134,6 +134,16 @@ class CountdownInput {
     this.#startButton.disabled = true;
   }
 
+  disable() {
+    this.#inputField.disabled = true;
+    this.#startButton.disabled = true;
+  }
+
+  enable() {
+    this.#inputField.disabled = false;
+    this.#startButton.disabled = !this.#clock.canCountdownTo(this.#targetDate);
+  }
+
   #onDatePicked(date) {
     if (!this.#clock.canCountdownTo(date)) {
       this.#startButton.disabled = true;
@@ -150,6 +160,7 @@ class CountdownInput {
       this.#notifier.error('Please choose a date in the future');
       return;
     }
+    this.disable();
     this.#clock.startCountdown(this.#targetDate);
   }
 }
@@ -186,6 +197,9 @@ const notifier = new Notifier();
 const display = new CountdownDisplay('.timer');
 const clock = new CountdownClock(
   time => display.setTime(time),
-  () => notifier.ok('Countdown Finished')
+  () => {
+    input.enable();
+    notifier.ok('Countdown Finished');
+  }
 );
 const input = new CountdownInput('.timer-input', clock, notifier);
