@@ -1,0 +1,46 @@
+.form {
+  max-width: 360px;
+}
+
+.form__delay {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.form__state {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  gap: 48px;
+  padding: 14px 24px 8px;
+  margin-bottom: 24px;
+  border-radius: 4px;
+  border: 1px solid var(--input-normal-border);
+
+  transition: border-color var(--transition);
+
+  &:hover,
+  &:focus,
+  &:focus-within {
+    border-color: var(--input-hover-border);
+  }
+
+  & legend {
+    padding: 0 4px;
+  }
+}
+
+.form__radio {
+  accent-color: #757575;
+  transition: accent-color var(--transition);
+
+  &:checked {
+    accent-color: var(--primary-bg-color);
+  }
+}
+
+.form__submit {
+  width: 100%;
+}

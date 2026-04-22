@@ -8,7 +8,43 @@
     <load src="./partials/header.html" highlight-snackbar-page="active" />
 
     <main>
-      <h1 class="visually-hidden">Snackbar</h1>
+      <div class="container">
+        <h1 class="visually-hidden">Snackbar</h1>
+        <form class="form">
+          <label class="form__delay">
+            Delay (ms)
+            <input type="number" name="delay" required value="0" min="0" />
+          </label>
+
+          <fieldset class="form__state">
+            <legend>State</legend>
+            <label>
+              <input
+                type="radio"
+                name="state"
+                value="fulfilled"
+                required
+                class="form__radio"
+              />
+              Fulfilled
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="state"
+                value="rejected"
+                required
+                class="form__radio"
+              />
+              Rejected
+            </label>
+          </fieldset>
+
+          <button type="submit" class="form__submit">
+            Create notification
+          </button>
+        </form>
+      </div>
     </main>
 
     <load src="./partials/footer.html" />

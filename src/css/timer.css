@@ -74,6 +74,7 @@
   flex-flow: row nowrap;
   gap: 8px;
   margin-bottom: 32px;
+  max-width: 355px;
 }
 
 .timer {
